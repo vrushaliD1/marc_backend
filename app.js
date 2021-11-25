@@ -15,14 +15,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 mongoose.set('debug', true);
-mongoose.connect(process.env.MONGO_URL,(err)=>{
-    if(err)
+mongoose.connect(process.env.MONGO_URL, (err) => {
+    if (err)
         console.log(err);
     console.log("connected to db");
 });
 
 app.use('/api/', indexRouter);
-app.use('/api/chapters/',chapterRouter);
+app.use('/api/chapters/', chapterRouter);
 app.use('/api/users', usersRouter);
+
+app.listen(8080)
 
 module.exports = app;
